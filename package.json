@@ -14,5 +14,13 @@
     "logAndExit"
   ],
   "author": "Luca Raveri",
-  "license": "MIT"
+  "license": "MIT",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/lraveri/winston-3-log-and-exit.git"
+  },
+  "homepage": "https://github.com/lraveri/winston-3-log-and-exit#readme",
+  "peerDependencies": {
+    "winston": "^3.0.0"
+  }
 }
