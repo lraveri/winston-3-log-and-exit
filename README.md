@@ -15,51 +15,33 @@ This package extends Winston's loggers by adding the `logAndExit` function, whic
 ### Basic Example
 
 ```javascript
-const winston = require("winston-3-log-and-exit");
+const winston = require("winston");
+require("winston-3-log-and-exit");
 
 const logger = winston.createLogger({
-  level: "info",
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "logfile.log" })
-  ]
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'app.log' }),
+    ],
 });
 
-logger.logAndExit("error", "Something went wrong", {}, 1); // Ensures the message is logged before the process exits
-process.exit(1);
-```
-
-### Handling Uncaught Exceptions and Unhandled Rejections
-
-You can use `logAndExit` to gracefully log and terminate the process on uncaught exceptions and unhandled promise rejections:
-
-```javascript
-const winston = require("winston-3-log-and-exit");
-
-const logger = winston.createLogger({
-  level: "info",
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "logfile.log" })
-  ]
-});
-
-// Exception handler
 process.on("uncaughtException", (err) => {
-  logger.logAndExit("error", `Uncaught Exception: ${err.message}`, {
-    name: err.name,
-    stack: err.stack,
-    code: err.code,
-  }, 1);
+    logger.logAndExit("error", `Uncaught Exception: ${err.message}`, { // This message will be included in the log files
+        name: err.name,
+        stack: err.stack
+    }, 1);
 });
 
-// Unhandled Promise Rejection handler
 process.on("unhandledRejection", (reason, promise) => {
-  logger.logAndExit("error", `Unhandled Promise Rejection: ${reason}`, {
-    stack: reason.stack || "No stack trace",
-    promise: promise,
-  }, 1);
+    logger.logAndExit("error", `Unhandled Promise Rejection: ${reason}`, { // This message will be included in the log files
+        stack: reason.stack,
+        promise: promise,
+    }, 1);
 });
+
+setTimeout(() => {
+    throw new Error("Test error");
+}, 2000);
 ```
 
 ## License
