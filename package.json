@@ -1,0 +1,18 @@
+{
+  "name": "winston-3-log-and-exit",
+  "version": "1.0.0",
+  "description": "Patch for winston 3 to ensure all transports flush before process exit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "winston",
+    "logger",
+    "exit",
+    "flush",
+    "logAndExit"
+  ],
+  "author": "Luca Raveri",
+  "license": "MIT"
+}
