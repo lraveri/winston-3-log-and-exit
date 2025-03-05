@@ -1,6 +1,6 @@
 {
   "name": "winston-3-log-and-exit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Patch for winston 3 to ensure all transports flush before process exit",
   "main": "index.js",
   "scripts": {
